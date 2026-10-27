@@ -1,0 +1,32 @@
+{
+  "name": "SafeCircle - Family Safety Platform",
+  "short_name": "SafeCircle",
+  "description": "Real-time family location, geofencing, SOS and women safety suite",
+  "theme_color": "#ef4444",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "SOS",
+      "url": "/sos",
+      "description": "Emergency SOS"
+    },
+    {
+      "name": "Map",
+      "url": "/map",
+      "description": "Live family map"
+    }
+  ]
+}

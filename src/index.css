@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #0f172a;
+    --color-muted: #64748b;
+  }
+  .dark {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-border: #334155;
+    --color-text: #f1f5f9;
+    --color-muted: #94a3b8;
+  }
+  html, body, #root {
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Leaflet map fixes */
+  .leaflet-container {
+    @apply w-full h-full z-0;
+    background: #e5e7eb;
+  }
+  .dark .leaflet-container {
+    background: #1e293b;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-slate-600 rounded-full; }
+  /* Safe area for mobile bottom nav */
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold
+           px-4 py-2 rounded-xl transition-all duration-150 active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600
+           text-slate-700 dark:text-slate-200 font-medium
+           px-4 py-2 rounded-xl transition-all duration-150 active:scale-95;
+  }
+  .btn-ghost {
+    @apply hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400
+           px-3 py-2 rounded-lg transition-all duration-150 active:scale-95;
+  }
+  .card {
+    @apply bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700;
+  }
+  .input {
+    @apply w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700
+           rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-400
+           dark:text-slate-100 placeholder-slate-400;
+  }
+  .badge-safe {
+    @apply bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-sos {
+    @apply bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-warning {
+    @apply bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-offline {
+    @apply bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+/* SOS button pulse animation */
+@keyframes sos-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
+  50% { box-shadow: 0 0 0 20px rgba(239,68,68,0); }
+}
+.sos-pulse {
+  animation: sos-pulse 1.5s infinite;
+}
+
+/* Animated marker */
+@keyframes marker-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.marker-bounce {
+  animation: marker-bounce 2s infinite;
+}
+
+/* Skeleton loader */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  @apply rounded-lg;
+}
+.dark .skeleton {
+  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+  background-size: 200% 100%;
+}
+
+/* Fake call screen */
+.fake-call-overlay {
+  @apply fixed inset-0 z-[9999] flex flex-col items-center justify-between
+         bg-gradient-to-b from-slate-900 to-slate-800 text-white;
+}
